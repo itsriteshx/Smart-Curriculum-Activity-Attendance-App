@@ -122,23 +122,40 @@ const PORT = process.env.PORT || 5000;
 
 // Export app for tests or start listener if run directly
 if (require.main === module) {
-  const server = app.listen(PORT, () => {
-    console.log(`
+  let activePort = PORT;
+
+  const startServer = (portToTry) => {
+    const server = app.listen(portToTry, () => {
+      console.log(`
 🌾 ========================================================= 🌾
    Smart Agricultural Advisory System - Backend Initialized
    ---------------------------------------------------------
-   Server Running on : http://localhost:${PORT}
+   Server Running on : http://localhost:${portToTry}
    Environment       : ${process.env.NODE_ENV || 'development'}
-   Health Check      : http://localhost:${PORT}/api/health
-   Base Weather API  : http://localhost:${PORT}/api/weather/28.61/77.20
+   Health Check      : http://localhost:${portToTry}/api/health
+   Base Weather API  : http://localhost:${portToTry}/api/weather/28.61/77.20
 🌾 ========================================================= 🌾
-    `);
-  });
+      `);
+    });
 
-  // Handle unhandled promise rejections gracefully
-  process.on('unhandledRejection', (err) => {
-    console.error(`💥 Unhandled Promise Rejection: ${err.message}`);
-  });
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.warn(`⚠️  Port ${portToTry} is already in use (often macOS AirPlay on 5000).`);
+        const nextPort = Number(portToTry) + 1;
+        console.log(`🔄 Automatically attempting next available port: ${nextPort}...`);
+        startServer(nextPort);
+      } else {
+        console.error(`💥 Server Error: ${err.message}`);
+      }
+    });
+
+    // Handle unhandled promise rejections gracefully
+    process.on('unhandledRejection', (err) => {
+      console.error(`💥 Unhandled Promise Rejection: ${err.message}`);
+    });
+  };
+
+  startServer(activePort);
 }
 
 module.exports = app;
