@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "node test-api.js"
+    "test": "node test-api.js && node test-day2.js",
+    "test:day1": "node test-api.js",
+    "test:day2": "node test-day2.js"
   },
   "keywords": [
     "agriculture",
@@ -28,6 +30,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
     "morgan": "^1.10.0",
+    "multer": "^2.3.0",
     "node-cache": "^5.1.2"
   },
   "devDependencies": {

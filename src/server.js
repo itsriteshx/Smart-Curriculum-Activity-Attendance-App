@@ -13,6 +13,7 @@
  * 5. Global Error Handler (4 arguments: err, req, res, next)
  */
 
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -29,6 +30,12 @@ connectDB();
 const authRoutes = require('./routes/authRoutes');
 const farmerRoutes = require('./routes/farmerRoutes');
 const weatherRoutes = require('./routes/weatherRoutes');
+const cropRoutes = require('./routes/cropRoutes');
+const soilRoutes = require('./routes/soilRoutes');
+const pestRoutes = require('./routes/pestRoutes');
+const marketRoutes = require('./routes/marketRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 
 // Import Error Middlewares
 const { notFoundHandler, errorHandler } = require('./middleware/errorMiddleware');
@@ -49,6 +56,9 @@ app.use(express.json());
 // Parse URL-encoded payloads
 app.use(express.urlencoded({ extended: true }));
 
+// Serve uploaded plant & pest inspection images
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 // HTTP request logging in development
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
@@ -61,8 +71,8 @@ if (process.env.NODE_ENV !== 'test') {
 app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: '🌾 Welcome to Smart Agricultural Advisory System API (Day 1 Backend)',
-    version: '1.0.0',
+    message: '🌾 Welcome to Smart Agricultural Advisory System API (Day 2 Intelligence Suite)',
+    version: '2.0.0',
     documentation: '/api/docs or check README.md',
     endpoints: {
       health: 'GET /api/health',
@@ -82,6 +92,43 @@ app.get('/', (req, res) => {
       weather: {
         getWeatherAndAdvisory: 'GET /api/weather/:lat/:long',
       },
+      crops: {
+        recommendations: 'GET /api/crops/recommend/:farmerId',
+        details: 'GET /api/crops/:cropId',
+        byRegion: 'GET /api/crops/region/:state/:district',
+        bySeason: 'GET /api/crops/seasonal/:season',
+      },
+      soil: {
+        analyze: 'POST /api/soil/analyze',
+        history: 'GET /api/soil/analysis/:farmerId',
+        fertilizerRecommendation: 'GET /api/soil/fertilizer-recommendation/:farmerId/:cropId',
+        setReminder: 'POST /api/soil/set-reminder/:farmerId',
+      },
+      pest: {
+        detectWithUpload: 'POST /api/pest/detect (multipart image)',
+        treatment: 'GET /api/pest/treatment/:pestId/:cropId',
+        treatmentCost: 'GET /api/pest/cost/:pestName/:farmSize',
+        history: 'GET /api/pest/history/:farmerId',
+        reportIncident: 'POST /api/pest/report',
+      },
+      market: {
+        currentPrice: 'GET /api/market/prices/:cropName/:state/:district',
+        priceHistory: 'GET /api/market/history/:cropName?days=30',
+        sellAdvice: 'GET /api/market/sell-recommendation/:cropName/:farmerId',
+        createAlert: 'POST /api/market/alert/create',
+        farmerAlerts: 'GET /api/market/alert/:farmerId',
+        updateAlert: 'PUT /api/market/alert/:alertId',
+      },
+      admin: {
+        stats: 'GET /api/admin/stats (Admin only)',
+        farmersCount: 'GET /api/admin/farmers/count (Admin only)',
+        topCrops: 'GET /api/admin/crops/recommendations (Admin only)',
+        commonPests: 'GET /api/admin/pests/common (Admin only)',
+      },
+      feedback: {
+        submit: 'POST /api/feedback',
+        stats: 'GET /api/feedback/stats (Admin only)',
+      },
     },
   });
 });
@@ -90,6 +137,7 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
     status: 'UP',
+    version: '2.0.0',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     memoryUsage: process.memoryUsage(),
@@ -103,6 +151,12 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/farmer', farmerRoutes);
 app.use('/api/weather', weatherRoutes);
+app.use('/api/crops', cropRoutes);
+app.use('/api/soil', soilRoutes);
+app.use('/api/pest', pestRoutes);
+app.use('/api/market', marketRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/feedback', feedbackRoutes);
 
 // ==========================================
 // ERROR HANDLING PIPELINE

@@ -340,6 +340,21 @@ When explaining this project to teachers, evaluators, or in viva interviews, use
 
 ---
 
+## 📌 Day 2 Core Features Overview
+
+During **Day 2**, the following modules were implemented and integrated:
+1. **Crop Recommendation Engine (`/api/crops`)**: Multi-variable ranking factoring in season, soil type, temperature, and net profitability.
+2. **Soil Health & Fertilizer Calculator (`/api/soil`)**: Lab test evaluation with exact Urea (45kg), DAP (50kg), and MOP (50kg) bag calculations for farm acreage.
+3. **Pest & Disease Detection (`/api/pest`)**: Image uploads via Multer, symptom pattern matching, and dual organic/chemical treatment costing.
+4. **Mandi Market Prices & Alerts (`/api/market`)**: Wholesale APMC commodity rates, 30-day volatility trends, buy/sell timing intelligence, and custom price alerts.
+5. **Admin Analytics Dashboard (`/api/admin`)**: Executive metrics, top recommended crops, regional farmer breakdowns, and pest outbreak maps.
+6. **Feedback & Rating System (`/api/feedback`)**: 1-5 star ratings and feedback collection.
+7. **Comprehensive Postman Collection**: Ready-to-import `postman_collection.json` with pre-configured requests.
+
+---
+
 ## 📜 Git Version History
 - `b47cc8d` - Initial commit (Repository initialization)
 - `Day 1` - Backend infrastructure, authentication, farmer profile & weather advisory system
+- `Day 2` - Crop recommendations, soil health, fertilizer dosage, pest detection, mandi prices & admin analytics
+
