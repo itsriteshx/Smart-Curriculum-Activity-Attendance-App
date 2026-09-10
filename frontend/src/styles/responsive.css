@@ -1,0 +1,11 @@
+/* Responsive Mobile-First Enhancements */
+@media (max-width: 640px) {
+  .btn {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  .card {
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+}
