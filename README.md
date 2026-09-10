@@ -353,8 +353,44 @@ During **Day 2**, the following modules were implemented and integrated:
 
 ---
 
+## 🎨 Day 3 - Frontend & Deployment Suite
+
+During **Day 3**, the complete production-grade React web client and deployment infrastructure were delivered:
+
+### 1. Modern React + Vite Frontend (`/frontend`)
+- **8 Production Pages**:
+  1. `Login` (`/login`): Farmer and Admin authentication with demo credentials quick-fill.
+  2. `Register` (`/register`): Role selection, state/district, soil categorization, and irrigation details.
+  3. `Dashboard` (`/`): Real-time agro-meteorological advisories, profile completion meter, crop matches, Mandi price preview, and soil diagnostics.
+  4. `Crop Recommendations` (`/crops`): Filter by season (*Kharif, Rabi, Zaid*), sort by profit/yield, text-to-speech audio readouts, and detailed agronomic modal guides.
+  5. `Soil Health & Fertilizer Calculator` (`/soil`): Laboratory NPK gauge diagnostics, 3-year historical line chart (`react-chartjs-2`), exact commercial fertilizer bag calculations (Urea 45kg, DAP 50kg, MOP 50kg) with estimated cost, and testing reminders.
+  6. `Pest & Disease Detection` (`/pest`): Drag-and-drop leaf photo uploader, live camera viewfinder snapshot capture, dual organic vs. chemical remedy recommendations, and per-acre treatment costing.
+  7. `Mandi Market Rates & Intelligence` (`/market`): Real-time APMC wholesale rates, voice search for commodities, 30-day price trend chart, buy/sell timing signals, SMS/Push alert setup, and CSV export.
+  8. `Settings & Profile` (`/settings`): Farm profile updater, password change, English/Hindi language switch, and Dark/Light mode theme toggle.
+
+### 2. Voice & Multilingual Support
+- **Web Speech API Integration**:
+  - **Speech-to-Text (STT)**: Hands-free voice recognition for searching crops and Mandi markets.
+  - **Text-to-Speech (TTS)**: Bilingual audio playback (`en-IN` and `hi-IN`) reading agronomic advisories and sell recommendations aloud for rural farmers.
+- **i18next Multilingual Engine**: Full UI translation between English and Hindi (`en.json` & `hi.json`) with persistent user preference in `localStorage`.
+
+### 3. Docker Containerization & Deployment Orchestration
+- **Root Dockerfile**: Production Node.js 20-alpine container with health check on `http://localhost:5000/api/health`.
+- **Frontend Dockerfile & Nginx**: Multi-stage build (Node build -> Nginx Alpine static server with reverse proxy for `/api/` and `/uploads/`).
+- **Docker Compose (`docker-compose.yml`)**: Single-command multi-container stack (`backend`, `frontend`, `mongodb`) with persistent volumes and bridge networking:
+  ```bash
+  docker-compose up --build
+  ```
+- **Cloud Deployment Support**:
+  - Heroku / Railway: `Procfile` ready (`web: node src/server.js`).
+  - Environment templates: `.env.development`, `.env.production`.
+
+---
+
 ## 📜 Git Version History
 - `b47cc8d` - Initial commit (Repository initialization)
 - `Day 1` - Backend infrastructure, authentication, farmer profile & weather advisory system
 - `Day 2` - Crop recommendations, soil health, fertilizer dosage, pest detection, mandi prices & admin analytics
+- `Day 3` - React Vite frontend, Web Speech API (STT/TTS), i18n bilingual support (EN/HI), Docker orchestration & deployment configs
+
 
