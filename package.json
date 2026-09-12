@@ -4,11 +4,16 @@
   "description": "Smart Agricultural Advisory System backend for Indian farmers providing personalized crop recommendations, real-time weather alerts, and farm profile management.",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node cli.js",
+    "cli": "node cli.js",
+    "server": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "node test-api.js && node test-day2.js",
     "test:day1": "node test-api.js",
     "test:day2": "node test-day2.js"
+  },
+  "bin": {
+    "kisan-cli": "./cli.js"
   },
   "keywords": [
     "agriculture",
