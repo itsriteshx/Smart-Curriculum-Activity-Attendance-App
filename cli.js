@@ -57,11 +57,22 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+rl.on('SIGINT', () => {
+  console.log(colors.yellow + '\n\n   🙏 Thank you for using KisanSeva Advisory. Jai Kisan! 🌾\n' + colors.reset);
+  process.exit(0);
+});
+
+rl.on('close', () => {
+  process.exit(0);
+});
+
 /**
  * Helper to prompt questions synchronously using Promises
  */
 function askQuestion(query) {
-  return new Promise((resolve) => rl.question(query, resolve));
+  return new Promise((resolve) => {
+    rl.question(query, (answer) => resolve(answer || ''));
+  });
 }
 
 // ============================================================================
