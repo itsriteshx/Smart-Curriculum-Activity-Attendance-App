@@ -93,7 +93,6 @@ $$\text{Score} = w_{\text{season}} + w_{\text{soil}} + w_{\text{temp}} + w_{\tex
 ```text
 Smart-Curriculum-Activity-Attendance-App/
 ├── cli.js                  # 🌟 Main Terminal Application (Interactive CLI)
-├── VIVA_GUIDE.md           # 🎓 Complete Viva Examination Preparation Guide
 ├── README.md               # 📖 Master Project Documentation
 ├── package.json            # ⚙️ Project configuration, scripts, and bin alias
 ├── test-api.js             # 🧪 Day 1 Verification Suite (6 Automated Tests)
@@ -152,11 +151,6 @@ npm test
 ```
 
 ---
-
-## 🎓 Viva Preparation Pointer
-
-For quick revision before oral examination or viva, please refer to:  
-👉 **[VIVA_GUIDE.md](VIVA_GUIDE.md)** — Contains top 10 viva questions, examiner answers, formula proofs, and grading highlights.
 
 ---
 
