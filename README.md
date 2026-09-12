@@ -1,6 +1,32 @@
-# 🌾 Smart Agricultural Advisory System for Indian Farmers
+# 🌾 Smart Agricultural Advisory System (KisanSeva Terminal Application)
+**Project Name:** Smart Curriculum Activity & Attendance App / Kisan Advisory System  
+**Student:** Ritesh Kumar (ADYPU - E25B070681)  
+**Submission Type:** Interactive Terminal Application (CLI)
 
-An intelligent, full-stack advisory platform built with **Node.js, Express.js, MongoDB, and OpenWeatherMap** designed to empower Indian smallholder farmers with personalized agronomic advisories, real-time agro-meteorological alerts, and digital farm profiling.
+An intelligent, interactive **Terminal Application (CLI)** and backend advisory suite built with **Node.js, Express.js, and MongoDB** designed to empower Indian smallholder farmers with personalized agronomic advisories, soil health diagnostics, real-time agro-meteorological alerts, pest treatment protocols, and Mandi price analytics.
+
+---
+
+## ⚡ Quick Start (Run Terminal Application)
+
+To launch the interactive Terminal Application CLI:
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start the Terminal Application
+npm start
+```
+*(Or run directly: `node cli.js`)*
+
+### 🎮 Terminal CLI Features:
+1. **🌾 Crop Recommendation Engine:** Evaluates Season, Soil, and Water availability using a weighted multi-factor algorithm.
+2. **🧪 Soil Health & Fertilizer Calculator:** Calculates exact commercial bags of Urea (45kg), DAP (50kg), and MOP (50kg).
+3. **🌦️ Weather-Based Farm Advisory:** Rainfall and wind alerts for irrigation postponement and safe spraying windows.
+4. **🐛 Pest & Crop Disease Diagnosis:** Symptom matching with confidence %, organic bio-remedies, and chemical controls.
+5. **📈 Mandi Market Prices & Selling Advisory:** APMC mandi modal rates compared to MSP with clear SELL or HOLD advice.
+6. **🌐 Bilingual Support:** Instant toggle between English and Hindi (हिन्दी).
+7. **📝 Farmer Feedback Collection:** Continuous feedback loop with local JSON audit persistence.
 
 ---
 
