@@ -1,422 +1,169 @@
-# 🌾 Smart Agricultural Advisory System (KisanSeva Terminal Application)
-**Project Name:** Smart Curriculum Activity & Attendance App / Kisan Advisory System  
-**Student:** Ritesh Kumar (ADYPU - E25B070681)  
-**Submission Type:** Interactive Terminal Application (CLI)
+# 🌾 KisanSeva - Smart Agricultural Advisory System (Terminal Application)
 
-An intelligent, interactive **Terminal Application (CLI)** and backend advisory suite built with **Node.js, Express.js, and MongoDB** designed to empower Indian smallholder farmers with personalized agronomic advisories, soil health diagnostics, real-time agro-meteorological alerts, pest treatment protocols, and Mandi price analytics.
+[![Project Status: Completed](https://img.shields.io/badge/Project%20Status-Completed-success?style=for-the-badge)](https://github.com/itsriteshx/Smart-Curriculum-Activity-Attendance-App)
+[![Platform: Terminal CLI](https://img.shields.io/badge/Platform-Terminal%20CLI-blue?style=for-the-badge)](https://github.com/itsriteshx/Smart-Curriculum-Activity-Attendance-App)
+[![Tests: 12/12 Passing](https://img.shields.io/badge/Tests-12%2F12%20Passing-brightgreen?style=for-the-badge)](https://github.com/itsriteshx/Smart-Curriculum-Activity-Attendance-App)
+[![Language: Node.js](https://img.shields.io/badge/Runtime-Node.js%20v18%2B-green?style=for-the-badge)](https://nodejs.org)
+
+**Portal Project Title:** Smart Curriculum Activity & Attendance App  
+**Domain & Technology Bucket:** Smart Agriculture / Terminal Application  
+**Student Name:** Ritesh Kumar  
+**University / Institute:** Ajeenkya DY Patil University (ADYPU)  
+**URN:** E25B070681 | **Email:** e25b070681@adypu.edu.in  
 
 ---
 
-## ⚡ Quick Start (Run Terminal Application)
+## 📖 Executive Summary & Problem Context
 
-To launch the interactive Terminal Application CLI:
+In India, over **86% of farmers are small and marginal** (NABARD Report, 2022). Due to digital literacy barriers, language gaps, and the absence of localized scientific tools, a majority of farmers rely on guesswork or local shopkeeper recommendations for:
+- Crop selection
+- Chemical fertilizer dosages
+- Pest and disease control
+- Selling timing in local Mandis
+
+This often leads to poor crop yields, soil degradation, excessive input costs, and exploitation. Studies demonstrate that **scientific, ICT-based advisories can increase farm yields by 20% to 30%** while cutting unnecessary input costs.
+
+**KisanSeva** is a lightweight, zero-latency **Terminal Application (CLI)** designed to provide personalized, real-time agronomic insights directly inside the terminal without requiring heavy web browsers or high-speed broadband connections.
+
+---
+
+## 🚀 Quick Start (Running the Terminal App)
+
+### 1. Prerequisites
+- **Node.js** (v18 or higher installed)
+- Any standard Terminal (macOS Terminal, iTerm, Linux Bash/Zsh, Windows PowerShell)
+
+### 2. Installation & Launch
 ```bash
-# 1. Install dependencies
+# Clone the repository
+git clone https://github.com/itsriteshx/Smart-Curriculum-Activity-Attendance-App.git
+cd Smart-Curriculum-Activity-Attendance-App
+
+# Install dependencies
 npm install
 
-# 2. Start the Terminal Application
+# Launch the Interactive Terminal Application
 npm start
 ```
-*(Or run directly: `node cli.js`)*
 
-### 🎮 Terminal CLI Features:
-1. **🌾 Crop Recommendation Engine:** Evaluates Season, Soil, and Water availability using a weighted multi-factor algorithm.
-2. **🧪 Soil Health & Fertilizer Calculator:** Calculates exact commercial bags of Urea (45kg), DAP (50kg), and MOP (50kg).
-3. **🌦️ Weather-Based Farm Advisory:** Rainfall and wind alerts for irrigation postponement and safe spraying windows.
-4. **🐛 Pest & Crop Disease Diagnosis:** Symptom matching with confidence %, organic bio-remedies, and chemical controls.
-5. **📈 Mandi Market Prices & Selling Advisory:** APMC mandi modal rates compared to MSP with clear SELL or HOLD advice.
-6. **🌐 Bilingual Support:** Instant toggle between English and Hindi (हिन्दी).
-7. **📝 Farmer Feedback Collection:** Continuous feedback loop with local JSON audit persistence.
+*(You can also run directly with `node cli.js`)*
 
 ---
 
-## 📌 Day 1 Architecture & Infrastructure Overview
+## 🎮 Features & Problem Statement Alignment
 
-During **Day 1**, we have established the robust core backend infrastructure:
-1. **Production-grade Express.js REST API Server** with modular architecture (MVC pattern).
-2. **MongoDB ODM Database Layer** via Mongoose with connection pooling and event listeners.
-3. **Role-Based JWT Authentication System** with password hashing via `bcryptjs` and pre-save hooks.
-4. **Farmer Profile Management System** capturing geo-location, soil categorization (Alluvial, Black Cotton, Loamy, etc.), farm size, water sources, and seasonal crop logs.
-5. **Agro-Meteorological Weather Service & Advisory Engine** integrated with OpenWeatherMap, with an in-memory 30-minute caching layer (`node-cache`) and bilingual recommendations (English & Hindi) for irrigation, spraying, pest alerts, and field operations.
-6. **Centralized Error Handling Pipeline** capturing Mongoose validation, duplicate keys (11000), bad ObjectIds, and JWT expiration errors.
-7. **Viva & College Exam Ready** with JSDoc comments and explanatory annotations on every function.
-
----
-
-## 🛠️ Technology Stack
-
-| Component | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Runtime** | Node.js (v18+) | Non-blocking asynchronous event loop |
-| **Web Framework** | Express.js (v4.21+) | HTTP REST API routing and middleware pipeline |
-| **Database** | MongoDB (Local or Atlas) | NoSQL document database for dynamic agricultural data |
-| **ODM** | Mongoose (v8.9+) | Schema modeling, validation, and pre-save hooks |
-| **Authentication** | JSON Web Tokens (`jsonwebtoken`) | Stateless token-based security |
-| **Cryptography** | `bcryptjs` | Salting and hashing farmer passwords |
-| **Security & Utilities**| `cors`, `dotenv` | Cross-Origin resource sharing & environment loading |
-| **Logging** | `morgan` | HTTP request telemetry in development |
-| **Weather & Cache** | `axios`, `node-cache` | Weather API calls and 30-min TTL in-memory caching |
+| # | Expected Outcome | Terminal CLI Module | Technical Implementation |
+|---|---|---|---|
+| **1** | **Location & Soil Crop Advisory** | `1. 🌾 Smart Crop Recommendation` | Evaluates Season (30%), Soil Type (25%), Temperature (20%), Hydrology (15%), and Net Profitability (10%) to rank suitable crops. |
+| **2** | **Soil Health & Fertilizer Guidance** | `2. 🧪 Soil Health & Fertilizer Calculator` | Converts NPK soil test deficits into exact commercial bag counts for **Urea (45kg)**, **DAP (50kg)**, and **MOP (50kg)** with subsidized cost estimates. |
+| **3** | **Weather Alerts & Insights** | `3. 🌦️ Weather-Based Farm Advisory` | Agro-meteorological decision matrix evaluates rain probability (irrigation postponement) and wind velocity (safe spraying window). |
+| **4** | **Pest & Disease Detection** | `4. 🐛 Pest & Disease Diagnosis` | Symptom matching engine returning confirmed pathogen, confidence %, and both **Organic (Bio)** & **Chemical** treatments. |
+| **5** | **Market Price Tracking** | `5. 📈 Mandi Market Prices & Advisory` | Tracks APMC mandi rates across states, compares modal prices against MSP, and delivers clear **SELL** or **HOLD** advice. |
+| **6** | **Multilingual Support** | `6. 🌐 Switch Language (हिन्दी / English)` | Full bilingual support with instant toggle between English and Hindi. |
+| **7** | **Feedback & Continuous Improvement** | `7. 📝 Farmer Feedback Survey` | Collects 1-5 star ratings and reviews, persisting them into `feedback_log.json` for audit. |
+| **8** | **System Architecture & Viva Guide** | `8. 📊 System Overview & Viva Guide` | In-terminal documentation displaying formulas, data structures, and Viva explanation points. |
 
 ---
 
-## 📂 Project Directory Structure
+## 🧮 Core Algorithms & Agronomic Formulas
+
+### 1. Scientific Fertilizer Requirement Engine
+Commercial fertilizers do not contain pure elemental nutrients. The application computes required bags using verified chemical compositions:
+- **DAP (Diammonium Phosphate - 18:46:0):** Supplies 46% $P_2O_5$ and 18% Nitrogen:
+  $$\text{DAP Required (kg)} = \frac{\text{Phosphorus Deficit}}{0.46}$$
+  $$\text{Nitrogen supplied by DAP} = \text{DAP (kg)} \times 0.18$$
+- **Urea (46% Nitrogen):** Supplies remaining Nitrogen:
+  $$\text{Urea Required (kg)} = \frac{\text{Nitrogen Deficit} - \text{N from DAP}}{0.46}$$
+- **MOP (Muriate of Potash - 60% $K_2O$):** Supplies Potassium:
+  $$\text{MOP Required (kg)} = \frac{\text{Potassium Deficit}}{0.60}$$
+
+### 2. Multi-Criteria Crop Suitability Index
+Every candidate crop is evaluated against 5 weighted criteria:
+$$\text{Score} = w_{\text{season}} + w_{\text{soil}} + w_{\text{temp}} + w_{\text{water}} + w_{\text{profit}} \quad (\text{Max: } 100)$$
+
+### 3. Weather Decision Matrix
+- $\text{Rain Probability} > 50\% \implies$ **Postpone flood irrigation** (prevents waterlogging and fertilizer leaching).
+- $\text{Wind Speed} < 12\text{ km/h} \ \& \ \text{Rain} < 40\% \implies$ **Optimal foliar spray window** (avoids wind drift).
+- $\text{Humidity} > 70\% \implies$ **Fungal blight risk alert** (Paddy/Pulses).
+
+---
+
+## 📂 Project Architecture
 
 ```text
-├── package.json                   # Project metadata and dependencies
-├── .env                           # Active environment variables (git-ignored)
-├── .env.example                   # Environment configuration template
-├── .gitignore                     # Git ignore rules
-├── README.md                      # Complete documentation & Viva study guide
-├── test-api.js                    # Automated verification test suite
+Smart-Curriculum-Activity-Attendance-App/
+├── cli.js                  # 🌟 Main Terminal Application (Interactive CLI)
+├── VIVA_GUIDE.md           # 🎓 Complete Viva Examination Preparation Guide
+├── README.md               # 📖 Master Project Documentation
+├── package.json            # ⚙️ Project configuration, scripts, and bin alias
+├── test-api.js             # 🧪 Day 1 Verification Suite (6 Automated Tests)
+├── test-day2.js            # 🧪 Day 2 Verification Suite (6 Automated Tests)
+├── feedback_log.json       # 📝 Local audit log for farmer feedback
 └── src/
-    ├── server.js                  # Application entry point & HTTP listener
+    ├── server.js           # Express API server (optional backend service)
     ├── config/
-    │   └── db.js                  # MongoDB connection handler & event listeners
+    │   └── db.js           # MongoDB connection handler
     ├── constants/
-    │   ├── roles.js               # Enums: ROLES, SOIL_TYPES, WATER_AVAILABILITY
-    │   └── messages.js            # Standardized API response messages
-    ├── models/
-    │   ├── User.js                # User schema (email, phone, bcrypt hash, role)
-    │   └── Farmer.js              # Farmer profile schema (geo-coords, soil, crops)
-    ├── middleware/
-    │   ├── authMiddleware.js      # verifyToken (JWT) & authorizeRoles (RBAC)
-    │   ├── validateMiddleware.js  # Input payload validation (Fail Fast)
-    │   └── errorMiddleware.js     # Centralized 404 & global error interceptor
+    │   ├── roles.js        # Agricultural enums (Soil types, seasons, roles)
+    │   └── messages.js     # Standardized response messages
+    ├── models/             # Mongoose schemas (User, Farmer, Crop, Fertilizer)
+    ├── middleware/         # Auth, validation, and error middlewares
+    ├── controllers/        # Business logic controllers
     ├── services/
-    │   └── weatherService.js      # Weather fetcher, 30m cache & agronomic rules
-    ├── controllers/
-    │   ├── authController.js      # Register, Login, Logout, Profile handlers
-    │   ├── farmerController.js    # Farm profile CRUD & completion analytics
-    │   └── weatherController.js   # Coordinate-based weather & advisory endpoint
-    └── routes/
-        ├── authRoutes.js          # /api/auth routes
-        ├── farmerRoutes.js        # /api/farmer routes (JWT Protected)
-        └── weatherRoutes.js       # /api/weather routes
+    │   ├── fertilizerService.js     # Exact bag calculation algorithm
+    │   ├── recommendationEngine.js  # Crop scoring and ranking engine
+    │   ├── pestClassification.js    # Symptom diagnosis engine
+    │   └── weatherService.js        # Weather parsing & caching
+    └── utils/
+        ├── seedData.js     # Master agronomic catalog (crops, pests, mandis)
+        └── validators.js   # Input validation helpers
 ```
 
 ---
 
-## ⚙️ Installation & Setup Guide
+## 🧪 Automated Testing & Verification
 
-### 1. Clone or Open Workspace
-Ensure you are inside the project folder:
-```bash
-cd "/Users/riteshkumar/Desktop/Smart Attandance "
-```
+The project includes 12 automated verification suites covering all agronomic rules, calculations, and algorithms.
 
-### 2. Install Node Dependencies
-```bash
-npm install
-```
-
-### 3. Configure Environment Variables
-Copy `.env.example` to `.env` (already done by setup):
-```bash
-cp .env.example .env
-```
-
-Review the values in `.env`:
-```env
-PORT=5000
-NODE_ENV=development
-MONGO_URI=mongodb://127.0.0.1:27017/smart_agriculture_db
-JWT_SECRET=supersecret_agri_advisor_jwt_key_2026_dev_secure
-JWT_EXPIRE=7d
-OPENWEATHER_API_KEY=your_openweathermap_key_here
-```
-> **Note on Weather API**: If you do not have an OpenWeatherMap API key right now, leave it empty. The built-in mock fallback engine automatically generates realistic Indian agro-meteorological conditions so you can test all advisory features immediately!
-
-### 4. Run Automated Test Suite
+To run all verification suites:
 ```bash
 npm test
 ```
-This runs `test-api.js` which verifies hashing, schema methods, weather normalization, memory caching, and recommendation algorithms without needing an active database connection.
 
-### 5. Start the Server
-For development with auto-reload:
-```bash
-npm run dev
-```
-For standard production start:
-```bash
-npm start
-```
-The server will start at: `http://localhost:5000`
+### Verification Output:
+```text
+🧪 Starting Day 1 Automated Verification Suite...
+✅ Test 1 Passed: System constants verified.
+✅ Test 2 Passed: Bcrypt hashing and comparison functional.
+✅ Test 3 Passed: Weather parser successfully extracts and formats metrics.
+✅ Test 4 Passed: Agricultural decision engine generated proper rain advisory & Hindi translations.
+✅ Test 5 Passed: In-memory cache successfully served repeated coordinate requests.
+✅ Test 6 Passed: Profile completion score calculated: 100%.
+🎉 ALL 6 TEST SUITES PASSED SUCCESSFULLY!
 
----
-
-## 📡 API Endpoints Documentation
-
-### 1. Root & Health Check
-- `GET /` - API welcome information and endpoints manifest.
-- `GET /api/health` - Health check reporting uptime and memory stats.
-
----
-
-### 2. Authentication Endpoints (`/api/auth`)
-
-#### A. Register New Farmer / User
-- **Method**: `POST`
-- **URL**: `/api/auth/register`
-- **Access**: Public
-- **Request Body**:
-```json
-{
-  "fullName": "Ramesh Patel",
-  "email": "ramesh.patel@kisan.in",
-  "password": "FarmerSecurePass123",
-  "phoneNumber": "9876543210",
-  "userRole": "farmer",
-  "language_preference": "Hindi"
-}
-```
-- **Response (201 Created)**:
-```json
-{
-  "success": true,
-  "message": "User registered successfully.",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "user": {
-    "id": "673f8...",
-    "fullName": "Ramesh Patel",
-    "email": "ramesh.patel@kisan.in",
-    "phoneNumber": "9876543210",
-    "userRole": "farmer",
-    "language_preference": "Hindi"
-  }
-}
-```
-
-#### B. Login
-- **Method**: `POST`
-- **URL**: `/api/auth/login`
-- **Access**: Public
-- **Request Body**:
-```json
-{
-  "email": "ramesh.patel@kisan.in",
-  "password": "FarmerSecurePass123"
-}
-```
-- **Response (200 OK)**:
-```json
-{
-  "success": true,
-  "message": "Login successful.",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "user": {
-    "id": "673f8...",
-    "fullName": "Ramesh Patel",
-    "email": "ramesh.patel@kisan.in"
-  }
-}
-```
-
-#### C. Get Current Authenticated Profile
-- **Method**: `GET`
-- **URL**: `/api/auth/me`
-- **Access**: Private (Header: `Authorization: Bearer <token>`)
-
----
-
-### 3. Farmer Profile Endpoints (`/api/farmer`)
-*All endpoints require the `Authorization: Bearer <token>` header.*
-
-#### A. Create Profile
-- **Method**: `POST`
-- **URL**: `/api/farmer/profile`
-- **Request Body**:
-```json
-{
-  "location": {
-    "latitude": 26.8467,
-    "longitude": 80.9462,
-    "state": "Uttar Pradesh",
-    "district": "Lucknow"
-  },
-  "farmSize": 5.5,
-  "soilType": "alluvial",
-  "waterAvailability": "irrigated",
-  "cropsGrown": [
-    {
-      "cropName": "Wheat (Kundan)",
-      "season": "Rabi",
-      "areaInAcres": 3.5
-    },
-    {
-      "cropName": "Mustard (Pusa)",
-      "season": "Rabi",
-      "areaInAcres": 2.0
-    }
-  ]
-}
-```
-- **Response (201 Created)**: Returns created farmer profile and `completionScore`.
-
-#### B. Get Current Logged-in Farmer Profile
-- **Method**: `GET`
-- **URL**: `/api/farmer/me`
-
-#### C. Get Profile by ID
-- **Method**: `GET`
-- **URL**: `/api/farmer/profile/:farmerId`
-
-#### D. Update Profile
-- **Method**: `PUT`
-- **URL**: `/api/farmer/profile/:farmerId`
-
-#### E. Profile Completion Analytics
-- **Method**: `GET`
-- **URL**: `/api/farmer/profile/:farmerId/completion`
-- **Response (200 OK)**:
-```json
-{
-  "success": true,
-  "farmerId": "673f8...",
-  "completionPercentage": 100,
-  "isComplete": true,
-  "missingFields": [],
-  "actionableTips": "All farm parameters are filled. Personalized agricultural intelligence is fully enabled!"
-}
+🧪 Starting Day 2 Core Agricultural Features Verification Suite...
+✅ Test 1 Passed: Crop catalog verified for Kharif season.
+✅ Test 2 Passed: 4-Acre Fertilizer Plan: 3 Urea bags, 3 DAP bags, 2 MOP bags. Total: ₹8250
+✅ Test 3 Passed: Diagnosed 'Yellow Rust / Stripe Rust' with 94% confidence.
+✅ Test 4 Passed: Mandi trend generated across 30 days. Price band: ₹2340 - ₹2568/quintal.
+✅ Test 5 Passed: Role-based access control strictly enforced for admin routes.
+✅ Test 6 Passed: Complete seed datasets loaded for Crops, Fertilizers, Pests, and Mandis.
+🎉 ALL 6 DAY 2 VERIFICATION TEST SUITES PASSED SUCCESSFULLY!
 ```
 
 ---
 
-### 4. Weather & Agricultural Advisory Endpoints (`/api/weather`)
+## 🎓 Viva Preparation Pointer
 
-#### Get Weather & Crop Recommendations by Coordinates
-- **Method**: `GET`
-- **URL**: `/api/weather/:lat/:long` (e.g. `/api/weather/28.6139/77.2090`)
-- **Access**: Public
-- **Response (200 OK)**:
-```json
-{
-  "success": true,
-  "message": "Weather forecast and agricultural recommendations retrieved successfully.",
-  "cached": false,
-  "cacheSource": "fresh-api-call",
-  "data": {
-    "location": {
-      "latitude": 28.6139,
-      "longitude": 77.2090,
-      "city": "Delhi NCR",
-      "country": "IN"
-    },
-    "currentWeather": {
-      "temperature": {
-        "current": 29,
-        "feelsLike": 30,
-        "min": 24,
-        "max": 33,
-        "unit": "Celsius"
-      },
-      "humidity": 58,
-      "wind": {
-        "speed": 3.2,
-        "speedKmph": 12,
-        "direction": 120
-      },
-      "condition": "Clear",
-      "rainPossibility": 0
-    },
-    "agriculturalAdvisory": [
-      {
-        "category": "Irrigation",
-        "priority": "NORMAL",
-        "advice": "Optimal weather for standard crop irrigation based on crop stage.",
-        "hindiAdvice": "फसल की अवस्था के अनुसार सामान्य सिंचाई के लिए अनुकूल मौसम है।"
-      },
-      {
-        "category": "Spraying",
-        "priority": "NORMAL",
-        "advice": "Wind speed is calm (<15 km/h). Ideal window for pesticide or micro-nutrient spraying.",
-        "hindiAdvice": "हवा शांत है। कीटनाशक या सूक्ष्म पोषक तत्वों के छिड़काव के लिए उपयुक्त समय है।"
-      }
-    ]
-  }
-}
-```
+For quick revision before oral examination or viva, please refer to:  
+👉 **[VIVA_GUIDE.md](VIVA_GUIDE.md)** — Contains top 10 viva questions, examiner answers, formula proofs, and grading highlights.
 
 ---
 
-## 🎓 Viva Questions & Answers Guide for College Evaluators
+## 👤 Author & Academic Details
 
-When explaining this project to teachers, evaluators, or in viva interviews, use these concepts:
-
-### Q1. Why did you choose Node.js and Express for the backend?
-> **Answer**: Node.js utilizes an asynchronous, event-driven, single-threaded I/O model based on Google Chrome's V8 engine. It excels at handling concurrent I/O operations (such as querying weather APIs, database reads/writes) with minimal RAM overhead. Express.js provides a minimalist, robust routing and middleware architecture.
-
-### Q2. How does JWT authentication work and why is it preferred over traditional session cookies?
-> **Answer**: JWT (JSON Web Token) provides **stateless authentication**. When a farmer logs in, the server signs a token containing `{ id: user._id }` using a server secret (`JWT_SECRET`). The client sends this token in the `Authorization: Bearer <token>` header for subsequent requests. Because the token is self-contained and cryptographically signed, the server does not need to store active session IDs in database memory, making horizontal scaling easy.
-
-### Q3. Why use a pre-save hook for password hashing in Mongoose?
-> **Answer**: Using `userSchema.pre('save')` encapsulates the password hashing logic directly into the model layer. Whenever a user registers or updates their password, `bcrypt.genSalt(10)` and `bcrypt.hash()` execute automatically before the document reaches the MongoDB engine. This ensures passwords are never saved in plaintext, regardless of where in the application `.save()` is triggered.
-
-### Q4. Why is weather data cached in memory for 30 minutes?
-> **Answer**: Meteorological parameters (temperature, humidity, atmospheric pressure) change gradually over hours, not milliseconds. Caching coordinates for 30 minutes (`node-cache`):
-> 1. Drastically reduces third-party API costs and prevents hitting OpenWeatherMap rate limits.
-> 2. Reduces response latency from ~500ms (network call) to <1ms (RAM lookup).
-> 3. Guarantees high availability even during transient network spikes.
-
-### Q5. How does your system convert weather data into agricultural advisories?
-> **Answer**: Raw weather metrics are parsed through an agro-meteorological rule engine (`mapWeatherToRecommendations` in `weatherService.js`). For example:
-> - **High wind (>15 km/h)**: Advises farmers to stop spraying pesticides to prevent drift.
-> - **High humidity (>75%) + Warm temp (24-32°C)**: Triggers fungal blight alerts and pest monitoring.
-> - **Rain forecast**: Advises postponing irrigation to prevent waterlogging and fertilizer wastage.
-
----
-
-## 📌 Day 2 Core Features Overview
-
-During **Day 2**, the following modules were implemented and integrated:
-1. **Crop Recommendation Engine (`/api/crops`)**: Multi-variable ranking factoring in season, soil type, temperature, and net profitability.
-2. **Soil Health & Fertilizer Calculator (`/api/soil`)**: Lab test evaluation with exact Urea (45kg), DAP (50kg), and MOP (50kg) bag calculations for farm acreage.
-3. **Pest & Disease Detection (`/api/pest`)**: Image uploads via Multer, symptom pattern matching, and dual organic/chemical treatment costing.
-4. **Mandi Market Prices & Alerts (`/api/market`)**: Wholesale APMC commodity rates, 30-day volatility trends, buy/sell timing intelligence, and custom price alerts.
-5. **Admin Analytics Dashboard (`/api/admin`)**: Executive metrics, top recommended crops, regional farmer breakdowns, and pest outbreak maps.
-6. **Feedback & Rating System (`/api/feedback`)**: 1-5 star ratings and feedback collection.
-7. **Comprehensive Postman Collection**: Ready-to-import `postman_collection.json` with pre-configured requests.
-
----
-
-## 🎨 Day 3 - Frontend & Deployment Suite
-
-During **Day 3**, the complete production-grade React web client and deployment infrastructure were delivered:
-
-### 1. Modern React + Vite Frontend (`/frontend`)
-- **8 Production Pages**:
-  1. `Login` (`/login`): Farmer and Admin authentication with demo credentials quick-fill.
-  2. `Register` (`/register`): Role selection, state/district, soil categorization, and irrigation details.
-  3. `Dashboard` (`/`): Real-time agro-meteorological advisories, profile completion meter, crop matches, Mandi price preview, and soil diagnostics.
-  4. `Crop Recommendations` (`/crops`): Filter by season (*Kharif, Rabi, Zaid*), sort by profit/yield, text-to-speech audio readouts, and detailed agronomic modal guides.
-  5. `Soil Health & Fertilizer Calculator` (`/soil`): Laboratory NPK gauge diagnostics, 3-year historical line chart (`react-chartjs-2`), exact commercial fertilizer bag calculations (Urea 45kg, DAP 50kg, MOP 50kg) with estimated cost, and testing reminders.
-  6. `Pest & Disease Detection` (`/pest`): Drag-and-drop leaf photo uploader, live camera viewfinder snapshot capture, dual organic vs. chemical remedy recommendations, and per-acre treatment costing.
-  7. `Mandi Market Rates & Intelligence` (`/market`): Real-time APMC wholesale rates, voice search for commodities, 30-day price trend chart, buy/sell timing signals, SMS/Push alert setup, and CSV export.
-  8. `Settings & Profile` (`/settings`): Farm profile updater, password change, English/Hindi language switch, and Dark/Light mode theme toggle.
-
-### 2. Voice & Multilingual Support
-- **Web Speech API Integration**:
-  - **Speech-to-Text (STT)**: Hands-free voice recognition for searching crops and Mandi markets.
-  - **Text-to-Speech (TTS)**: Bilingual audio playback (`en-IN` and `hi-IN`) reading agronomic advisories and sell recommendations aloud for rural farmers.
-- **i18next Multilingual Engine**: Full UI translation between English and Hindi (`en.json` & `hi.json`) with persistent user preference in `localStorage`.
-
-### 3. Docker Containerization & Deployment Orchestration
-- **Root Dockerfile**: Production Node.js 20-alpine container with health check on `http://localhost:5000/api/health`.
-- **Frontend Dockerfile & Nginx**: Multi-stage build (Node build -> Nginx Alpine static server with reverse proxy for `/api/` and `/uploads/`).
-- **Docker Compose (`docker-compose.yml`)**: Single-command multi-container stack (`backend`, `frontend`, `mongodb`) with persistent volumes and bridge networking:
-  ```bash
-  docker-compose up --build
-  ```
-- **Cloud Deployment Support**:
-  - Heroku / Railway: `Procfile` ready (`web: node src/server.js`).
-  - Environment templates: `.env.development`, `.env.production`.
-
----
-
-## 📜 Git Version History
-- `b47cc8d` - Initial commit (Repository initialization)
-- `Day 1` - Backend infrastructure, authentication, farmer profile & weather advisory system
-- `Day 2` - Crop recommendations, soil health, fertilizer dosage, pest detection, mandi prices & admin analytics
-- `Day 3` - React Vite frontend, Web Speech API (STT/TTS), i18n bilingual support (EN/HI), Docker orchestration & deployment configs
-
-
+- **Student:** Ritesh Kumar
+- **URN:** E25B070681
+- **Institute:** Ajeenkya DY Patil University (ADYPU), Pune
+- **Repository:** [https://github.com/itsriteshx/Smart-Curriculum-Activity-Attendance-App](https://github.com/itsriteshx/Smart-Curriculum-Activity-Attendance-App)
+- **License:** ISC
